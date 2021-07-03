@@ -7,5 +7,6 @@
     * [CSS](CSS/README)
     * [JavaScript](JavaScript/README)
     * [jQuery](jQuery/README)
+    * [Django](Django/README)
 
 * 生活感悟
