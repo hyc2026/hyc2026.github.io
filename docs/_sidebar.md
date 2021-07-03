@@ -5,5 +5,7 @@
     * [Html](Html/README)
     * [Http](Http/README)
     * [CSS](CSS/README)
+    * [JavaScript](JavaScript/README)
+    * [jQuery](jQuery/README)
 
 * 生活感悟
