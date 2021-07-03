@@ -1007,3 +1007,255 @@ LOGGING = {
 }
 ```
 
+## Django内容补充
+
++ 提交表单的方法：
+
+  Form、AJAX
+
+```
+https://www.cnblogs.com/wupeiqi/articles/5246483.html
+```
+
+### COOKIE
+
+`set_cookie()`
+
++ `key`
++ `value`
++ `max_age` 10
++ `expires` datetime.datetime.utcnow() + datetime.timedelta(seconds=10)
++ `path` Cookie生效的路径，默认'/'，所以路径都能拿到
++ `domain` Cookie生效的域名
++ `httponly` 只能通过http来获取cookie
+
+`set_signed_cookie`、`get_signed_cookie` 加密cookie
+
+由于cookie保存在客户端的电脑上，所以，JavaScript和jquery也可以操作cookie。
+
+```html
+<script src='/static/jquery-3.5.1.js'></script>
+<script src='/static/jquery.cookie.js'></script>
+$.cookie("list_pager_num", 30,{ path: '/'});
+```
+
+服务的和客户的均可设置cookie，cookie保存在客户的浏览器上。
+
+**基于cookie的登录认证系统：**
+
+
+```python
+#---------views.py---------
+def login(request):
+    msg = ""
+    if request.method == "POST":
+        user = request.POST.get('user')
+        pwd = request.POST.get('pwd')
+        c = Administrator.objects.filter(username=user, password=pwd).count()
+        if c:
+            rep = redirect('index1.html')
+            # 设置键值对以及其生命周期
+            rep.set_cookie('username', user, max_age=10)
+            return rep
+        else:
+            msg = "用户名或密码错误"
+            return render(request, 'login1.html', locals())
+    else:
+        return render(request, 'login1.html')
+
+def index(request):
+    username = request.COOKIES.get('username')
+    # 有cookie可以直接登录
+    if username:
+        return render(request, "index1.html", locals())
+    else:
+        return redirect('login1.html')
+#---------urls.py---------
+urlpatterns = [
+    path('login/', login),
+    path('login/login1.html', login),
+    path('login/index1.html', index),
+]
+```
+
+```html
+#--------------login1.html--------------
+<form action="" method="post">
+	{% csrf_token %}
+	<div>
+		<label for="user">用户名:</label>
+		<input id="user" type="text" name="user" />
+	</div>
+	<div>
+		<label for="user">密码:</label>
+		<input id="pwd" type="password" name="pwd" />
+	</div>
+	<div>
+		<label></label>
+		<input type="submit" name="登录" />
+		<span style="color:red">{{ msg }}</span>
+	</div>
+</form>
+#--------------index1.html--------------
+<h1>Hello {{ username }}</h1>
+```
+
+### Session
+
+#### 配置
+
+##### 数据库
+
+Django默认支持Session，并且默认是将Session数据存储在数据库中，即：django_session 表中。
+
+```python
+SESSION_ENGINE = 'django.contrib.sessions.backends.db' # 引擎（默认）
+SESSION_COOKIE_NAME ＝ "sessionid" # Session的cookie保存在浏览器上时的key，即：sessionid＝随机字符串（默认）
+SESSION_COOKIE_PATH ＝ "/" # Session的cookie保存的路径（默认）
+SESSION_COOKIE_DOMAIN = None # Session的cookie保存的域名（默认）
+SESSION_COOKIE_SECURE = False # 是否Https传输cookie（默认）
+SESSION_COOKIE_HTTPONLY = True # 是否Session的cookie只支持http传输（默认）
+SESSION_COOKIE_AGE = 1209600 # Session的cookie失效日期（2周）（默认）
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False # 是否关闭浏览器使得Session过期（默认）
+SESSION_SAVE_EVERY_REQUEST = False # 是否每次请求都保存Session，默认修改之后才保存（默认）
+```
+
+##### 缓存
+
+```python
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache' # 引擎
+SESSION_CACHE_ALIAS = 'default' # 使用的缓存别名（默认内存缓存，也可以是memcache），此处别名依赖缓存的设置
+SESSION_COOKIE_NAME ＝ "sessionid" # Session的cookie保存在浏览器上时的key，即：sessionid＝随机字符串
+SESSION_COOKIE_PATH ＝ "/" # Session的cookie保存的路径
+SESSION_COOKIE_DOMAIN = None # Session的cookie保存的域名
+SESSION_COOKIE_SECURE = False # 是否Https传输cookie
+SESSION_COOKIE_HTTPONLY = True # 是否Session的cookie只支持http传输
+SESSION_COOKIE_AGE = 1209600 # Session的cookie失效日期（2周）
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False # 是否关闭浏览器使得Session过期
+SESSION_SAVE_EVERY_REQUEST = False # 是否每次请求都保存Session，默认修改之后才保存
+```
+
+##### 文件
+
+```python
+SESSION_ENGINE = 'django.contrib.sessions.backends.file' # 引擎
+SESSION_FILE_PATH = None # 缓存文件路径，如果为None，则使用tempfile模块获取一个临时地址tempfile.gettempdir()                                  # 如：/var/folders/d3/j9tj0gz93dg06bmwxmhh6_xm0000gn/T
+SESSION_COOKIE_NAME ＝ "sessionid" # Session的cookie保存在浏览器上时的key，即：sessionid＝随机字符串
+SESSION_COOKIE_PATH ＝ "/" # Session的cookie保存的路径
+SESSION_COOKIE_DOMAIN = None # Session的cookie保存的域名
+SESSION_COOKIE_SECURE = False # 是否Https传输cookie
+SESSION_COOKIE_HTTPONLY = True # 是否Session的cookie只支持http传输
+SESSION_COOKIE_AGE = 1209600 # Session的cookie失效日期（2周）
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False # 是否关闭浏览器使得Session过期
+SESSION_SAVE_EVERY_REQUEST = False # 是否每次请求都保存Session，默认修改之后才保存
+```
+
+##### 缓存+数据库
+
+数据库用于做持久化，缓存用于提高效率
+
+```python
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db' # 引擎
+```
+
+##### 加密cookie
+
+```python
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'   # 引擎
+```
+
+#### 使用
+
+```python
+def index(request):
+    # 获取、设置、删除Session中数据
+    request.session['k1']
+    request.session.get('k1',None)
+    request.session['k1'] = 123
+    request.session.setdefault('k1',123) # 存在则不设置
+    del request.session['k1']
+    # 所有 键、值、键值对
+    request.session.keys()
+    request.session.values()
+    request.session.items()
+    request.session.iterkeys()
+    request.session.itervalues()
+    request.session.iteritems()
+    # 用户session的随机字符串
+    request.session.session_key
+    # 将所有Session失效日期小于当前日期的数据删除
+    request.session.clear_expired()
+    # 检查 用户session的随机字符串 在数据库中是否
+    request.session.exists("session_key")
+    # 删除当前用户的所有Session数据
+    request.session.delete("session_key")
+
+    request.session.set_expiry(value)
+    # 如果value是个整数，session会在些秒数后失效。
+    # 如果value是个datatime或timedelta，session就会在这个时间后失效。
+    # 如果value是0,用户关闭浏览器session就会失效。
+    # 如果value是None,session会依赖全局session失效策略。
+```
+
+### 使用类作为路由
+
+```python
+#---------views.py---------
+from django import views
+from django.utils.decorators import method_decorator
+
+def outer(func):
+    def inner(request, *args, **kwargs):
+        print(request.method)
+        return func(request, *args, **kwargs)
+    return inner
+
+# 装饰器中加所有类执行dispatch前共同的操作
+@method_decorator(outer, name='dispatch')
+class Login(views.View):
+    def dispatch(self, request, *args, **kwargs):
+        print("get/post执行前")
+        # 在dispatch中调用get或post方法(基于反射)
+        # 可在这里做一些验证，该类中执行get/post前共同的操作
+        ret = super(Login, self).dispatch(request, *args, **kwargs)
+        print("get/post执行后")
+        return ret
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'login1.html', {'msg': ''})
+
+    def post(self, request, *args, **kwargs):
+        user = request.POST.get('user')
+        pwd = request.POST.get('pwd')
+        c = Administrator.objects.filter(username=user, password=pwd).count()
+        if c:
+            rep = redirect('index1.html')
+            # rep.set_cookie('username', user, max_age=10)
+            request.session['username'] = user
+            request.session['is_login'] = True
+            return rep
+        else:
+            msg = "用户名或密码错误"
+            return render(request, 'login1.html', locals())
+#---------urls.py---------
+urlpatterns = [
+    path('login/', Login.as_view()),
+    path('login/login1.html', Login.as_view()),
+]
+```
+
+### 绑定事件委托(似乎叫这?)
+
+对ajax新加的标签绑定事件
+
+```html
+<ul>
+    <li>原标签</li>
+    <li>通过ajax添加的标签</li>
+</ul>
+<script>
+	$('li').click(function() {}) //只能对原有标签绑定事件
+    $('ul').on('click', 'li', function() {}) //可以对新加的标签绑定事件
+</script>
+```
+
