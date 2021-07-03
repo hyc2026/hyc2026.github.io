@@ -8,5 +8,6 @@
     * [JavaScript](JavaScript/README)
     * [jQuery](jQuery/README)
     * [Django](Django/README)
+    * [Ajax](Ajax/README)
 
 * 生活感悟
