@@ -2,9 +2,9 @@
 
 # python
 
-## 文件操作
-
 <span id="open"></span>
+
+## 文件操作
 
 `open(文件名(路径), mode="", encoding="字符集合")`
 
