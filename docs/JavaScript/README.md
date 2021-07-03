@@ -1,3 +1,5 @@
+[返回首页](/)
+
 # JavaScript
 
 ```
@@ -123,7 +125,7 @@ Undefined 类型只有一个值：undefined。
 
 ### 类型查询函数
 
-函数typeof ：查询数值当前类型  (string / number / boolean / object )
+函数typeof ：查询数值当前类型 (string / number / boolean / object )
 
 例如typeof("test"+3)      "string"
 例如typeof(null)          "object "
