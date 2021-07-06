@@ -65,7 +65,7 @@ login/
 - Host:localhost：请求的主机名为localhost；
 - *User-Agent: Mozilla/5.0 (**Windows NT 5.1**; rv:5.0) Gecko/20100101 **Firefox/5.0**：与浏览器和OS相关的信息。有些网站会显示用户的系统版本和浏览器版本信息，这都是通过获取User-Agent头信息而来的；
 - Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8：告诉服务器，当前客户端可以接收的文档类型，其实这里包含了*/*，就表示什么都可以接收；
-- Accept-Language: zh-cn,zh;q=0.5：当前客户端支持的语言，可以在浏览器的工具选项中找到语言相关信息；
+- Accept-Language: zh-cn,zh;q=0.5：当前客户端支持的语言，可以在浏览器的工具->选项中找到语言相关信息；
 - Accept-Encoding: gzip, deflate：支持的压缩格式。数据在网络上传递时，可能服务器会把数据压缩后再发送；
 - Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7：客户端支持的编码；
 - Connection: keep-alive：客户端支持的链接方式，保持一段时间链接，默认为3000ms；
