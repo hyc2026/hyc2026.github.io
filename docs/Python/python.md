@@ -1452,6 +1452,23 @@ f2()
 + 抽象类+抽象方法
 + 人为主动抛出异常`NotImplementedError("该方法必须被重写")`
 
+## 多线程
+
+```python
+import time
+import threading
+
+def task(n):
+    print('开始执行任务', n)
+    time.sleep(10)
+    print('...')
+    print('任务%s执行完毕'%n)
+while True:
+    name = input('请输入任务：')
+    t = threading.Thread(target=task, args=(name,))
+    t.start()
+```
+
 ## 补充
 
 ### 小数据池
