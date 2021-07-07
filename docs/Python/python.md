@@ -1482,3 +1482,15 @@ f2()
     `-- logs.log
 ```
 
+### 字符串&编码
+
++ py2
+  + s = u"root" 本质上用unicode存储(万国码)
+  + s = "root"  本质上用字节存储
+  + 编码：默认ascii，可用头文件修改 #-\*- encoding:utf-8 -\*-
++ py3
+  + s = "root" 本质上用unicode存储(万国码)
+  + s = b"root"  本质上用字节存储
+  + 编码：默认utf-8
+
+ 
