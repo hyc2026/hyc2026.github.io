@@ -10,7 +10,7 @@ https://www.cnblogs.com/yuanchenqi/articls/5977825.html
 
 ### 行内式
 
-行内式是在标记的style属性中设定CSS样式。这种方式没有体现出CSS的优势，不推荐使用。
+行内式是在标记的style属性中设定CSS样式。这种方式没有体现出CSS的优势，不推荐使用。**优先级最高**
 
 ```html
 <p style="background-color: rebeccapurple">hello yuan</p>

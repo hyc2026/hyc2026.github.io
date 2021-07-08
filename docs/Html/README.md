@@ -4,6 +4,7 @@
 
 ```
 https://www.cnblogs.com/yuanchenqi/articls/5976755.html
+https://www.cnblogs.com/majj/p/9056951.html
 ```
 
 ## 标签
@@ -27,7 +28,7 @@ https://www.cnblogs.com/yuanchenqi/articls/5976755.html
 ### 基本标签
 
 ```html
-<!DOCTYPE html>
+<!DOCTYPE html> <!--文档声明-->
 <html lang="en">
   <head>
     <!-- name属性主要用于描述网页，与之对应的属性值为content，content中的内容主要是便于搜索引擎机器人查找信息和分类信息用的。 -->
@@ -98,7 +99,7 @@ https://www.cnblogs.com/yuanchenqi/articls/5976755.html
 
 ```html
 <ul>
-  <li>unordered list</li>
+  <li type="circle/square">unordered list</li>
 </ul>
 <ol>
   <li>ordered list</li>
