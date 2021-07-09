@@ -4,13 +4,13 @@ Transformer 是谷歌大脑在2017年底发表的论文中所提出的seq2seq模
 
 传统RNN的训练时串行的，必须要等当前字处理完，才可以处理下一个字。而Transformer的训练时并行的，即所有字是同时训练的，这样就大大增加了计算效率。
 
-<img src="model architecture.png" alt="model architecture" style="zoom:90%;" />
+![model architecture](model-architecture.png)
 
 ## Self-Attention
 
 Scaled Dot-Product Attention是归一化的点乘Attention，具体细节如图所示。
 
-![attention](C:\Users\hyc20\Desktop\hyc2026.github.io\docs\Transformer\attention.png)
+![attention](attention.png)
 $$
 Attention(Q,K,V)=softmax(\frac{QK^T}{\sqrt{d_k}})V
 $$
@@ -41,11 +41,11 @@ $$
 
 残差网络(Residual Network)引入了能够跳过一层或多层的捷径连接，因为捷径的存在使得网络的性能至少性能不会差于浅层网络。该方法解决了堆叠卷积层带来的退化问题，使得卷积神经网络的层数大大加深达到上百层，并且大幅度提升了卷积神经网络的性能。
 
-<img src="resnet.png" alt="resnet" style="zoom:50%;" />
+![resnet](resnet.png)
 
 ### 批归一化和层归一化
 
-<img src="normalization.png" alt="normalization" style="zoom:80%;" />
+![normalization](normalization.png)
 
 设输入的图像大小为[N, C, H, W]：
 
@@ -96,18 +96,9 @@ encoder中的Multi-Head Attention是自注意力机制，自注意力机制中�
 
 解码器由六个相同的层堆叠而成，其中Multi-Head Attention的q来自之前的decoder，k和v来自encoder的输出。这使得decoder中的每个位置能注意到输入序列的所有位置。
 
-除了编码器中的两个子层外，解码器新增了一个处理编码器输出的子层——掩码多头自注意力机制(masked multi-head self-attention mechanism)。传统Seq2Seq中Decoder使用的是RNN模型，因此在训练过程中输入t时刻的词，模型无论如何也看不到未来时刻的词，因为循环神经网络是时间驱动的，只有当t时刻运算结束了，才能看到t+1时刻的词。而Transformer Decoder抛弃了RNN，改为Self-Attention，由此就产生了一个问题，在训练过程中，整个ground truth都暴露在Decoder中，这显然是不对的，我们需要对Decoder的输入进行一些处理，该处理被称为Mask。
+除了编码器中的两个子层外，解码器新增了一个处理编码器输出的子层——掩码多头自注意力机制(masked multi-head self-attention mechanism)。传统Seq2Seq中Decoder使用的是RNN模型，因此在训练过程中输入t时刻的词，模型无论如何也看不到未来时刻的词，因为循环神经网络是时间驱动的，只有当t时刻运算结束了，才能看到t+1时刻的词。而Transformer Decoder抛弃了RNN，改为Self-Attention，由此就产生了一个问题，在训练过程中，整个ground truth都暴露在Decoder中，这显然是不对的，我们需要对Decoder的输入进行一些处理，该处理被称为Mask——将所有position后的值在输入softmax之前设为$-\infin$。
 
 举个例子，Decoder的ground truth为"\<start\> I am fine"，我们将这个句子输入到 Decoder中，经过Word Embedding和Positional Encoding之后，将得到的矩阵做三次线性变换$(W_Q,W_K,W_V)$。然后进行self-attention操作，首先通过$\frac{Q×K^T}{\sqrt{d_k}}$ 得到Scaled Scores，接下来非常关键，我们要对Scaled Scores进行Mask，举个例子，当我们输入 "I" 时，模型目前仅知道包括 "I" 在内之前所有字的信息，即"\<start\>" 和"I"的信息，不应该让其知道"I"之后词的信息。道理很简单，我们做预测的时候是按照顺序一个字一个字的预测，怎么能这个字都没预测完，就已经知道后面字的信息了呢？Mask 非常简单，首先生成一个下三角全 0，上三角全为负无穷的矩阵，然后将其与 Scaled Scores 相加即可。
-
-## 实现细节
-
-多头注意力共有三种不同的形式：
-
-+ 
-
-+ 
-+ decoder中的Masked Multi-Head Attention和encoder的类似，但每个position只能获取到之前position的信息，因此需要做mask——将所有position后的值在输入softmax之前设为$-\infin$。
 
 ## 词嵌入和位置嵌入
 

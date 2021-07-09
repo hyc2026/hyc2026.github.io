@@ -12,8 +12,8 @@
   <div id="app"></div>
   <script>
     window.$docsify = {
-      name: '',
-      repo: '',
+      name: 'hyc的博客',
+      repo: 'https://github.com/hyc2026',
       coverpage: true,
       onlyCover: true,
       loadSidebar: true,
@@ -28,5 +28,24 @@
   <script src="path-to-file/docsify-pdf-embed.js"></script>
   <!-- or use this if you are not hosting the file yourself -->
   <script src="//unpkg.com/docsify-pdf-embed-plugin/src/docsify-pdf-embed.js"></script>
+  <!--Python代码高亮-->
+  <script src="//unpkg.com/prismjs/components/prism-python.js"></script>
+  <!--sql代码高亮-->
+  <script src="//unpkg.com/prismjs/components/prism-sql.js"></script>
+  <!--shell代码高亮-->
+  <script src="//unpkg.com/prismjs/components/prism-bash.js"></script>
+  <!--全文搜索,直接用官方提供的无法生效-->
+  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+  <!-- 复制到剪贴板 -->
+  <script src="//unpkg.com/npm/docsify-copy-code"></script>
+  <!-- 字数统计 -->
+  <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+  <!-- 上一篇/下一篇 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <!-- 图片缩放插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <!-- 显示公式 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
 </body>
 </html>
