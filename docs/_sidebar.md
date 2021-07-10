@@ -14,5 +14,6 @@
 
 * 算法博客
     * [Transformer](Transformer/Transformer.md)
+    * [序列标注](nlp/README)
 
 * 生活感悟
