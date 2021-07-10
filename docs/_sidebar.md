@@ -1,6 +1,7 @@
 * [个人信息](README)
 * 研发博客
     * [Linux](Linux/README) 
+    * [git相关操作](git/README)
     * [Python](Python/python)
     * [网络编程](Socket/README)
     * [Html](Html/README)
@@ -12,6 +13,6 @@
     * [Ajax](Ajax/README)
 
 * 算法博客
-    * [Transformer](Transformer/Transformer.md) 
+    * [Transformer](Transformer/Transformer.md)
 
 * 生活感悟
