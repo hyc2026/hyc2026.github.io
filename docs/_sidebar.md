@@ -2,6 +2,7 @@
 * 研发博客
     * [Linux](Linux/README) 
     * [git相关操作](git/README)
+    * [conda相关操作](conda/README)
     * [Python](Python/python)
     * [网络编程](Socket/README)
     * [Html](Html/README)
@@ -15,5 +16,6 @@
 * 算法博客
     * [Transformer](Transformer/Transformer.md)
     * [序列标注](nlp/README)
+    * [Huggingface Transformers](Transformers/README)
 
 * 生活感悟
