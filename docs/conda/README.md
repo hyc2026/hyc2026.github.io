@@ -23,4 +23,4 @@
 **PackagesNotFoundError:**
 
 + `anaconda search -t conda packname`
-+ ``conda install -c <url> packname`
++ `conda install -c <url> packname`

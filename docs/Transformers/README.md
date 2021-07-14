@@ -435,6 +435,163 @@ print(raw_train_dataset.features)
  'idx': Value(dtype='int32', id=None)}"""
 ```
 
+### 从本地文件加载数据集
+
+可以使用本地`csv`、`json`、`text`或`panda`文件来构建`datasets.Dataset`
+
+`datasets.load_dataset()`函数可以三种类型的输入：`str`、`List[str]`和`Dict[Union[str, List[str]]]`
+
+```python
+from datasets import load_dataset
+dataset = load_dataset('csv', data_files='my_file.csv')
+dataset = load_dataset('csv', data_files=['my_file_1.csv', 'my_file_2.csv', 'my_file_3.csv'])
+dataset = load_dataset('csv', data_files={'train': ['my_train_file_1.csv', 'my_train_file_2.csv'],
+                                          'test': 'my_test_file.csv'})
+```
+
+#### CVS文件
+
+对于csv文件中的列应该有相同的组织形式，尤其是数据类型。Apache Arrow后端提供了一些现成的有趣功能：
+
++ 多线程或单线程读取
++ 自动解压缩输入文件（基于文件扩展名，如my_data.csv.gz）
++ 从CSV文件的第一行获取列名
++ 按列类型推断并转换为null、int64、float64、timestamp[s]、字符串或二进制数据之一
++ 检测空值的各种拼写，如NaN或#N/A
+
+以下访问选项可以控制csv文件的解析和读取：
+
++ `skiprows` (int) - 从头开始跳过的行数(默认0)
++ `column_names` (list, optional) – 生成表格中列的名字，如果是空则依赖于`autogenerate_column_names`(默认empty)
++ `delimiter` (1-character string) – The character delimiting individual cells in the CSV data (default `','`)
++ `quotechar` (1-character string) – The character used optionally for quoting CSV values (default `"`)
++ `quoting` (bool) – Control quoting behavior (default 0, setting this to 3 disables quoting, refer to pandas.read_csv documentation for more details)
+
+如果需要更多的控制，csv代码通过Apache Arrow的`pyarrow.csv.ReadOptions`、`pyarrow.csv.ParseOptions`和`pyarrow.csv.ConvertOptions`提供对读取、解析和转换的完全控制。
+
+- `read_options` — Can be provided with a `pyarrow.csv.ReadOptions` to control all the reading options. If `skiprows`, `column_names` or `autogenerate_column_names` are also provided (see above), they will take priority over the attributes in `read_options`.
+- `parse_options` — Can be provided with a `pyarrow.csv.ParseOptions` to control all the parsing options. If `delimiter` or `quote_char` are also provided (see above), they will take priority over the attributes in `parse_options`.
+- `convert_options` — Can be provided with a `pyarrow.csv.ConvertOptions` to control all the conversion options.
+
+#### JSON文件
+
+最有效的格式是JSON文件由多个JSON对象组成，每行一个，表示单个数据行：
+
+```json
+{"a": 1, "b": 2.0, "c": "foo", "d": false}
+{"a": 4, "b": -5.5, "c": null, "d": true}
+```
+
+Apache Arrow后端提供了一些现成的有趣功能：
+
++ 多线程读取
++ 自动解压缩输入文件（基于文件扩展名，如my_data.csv.gz）
++ 复杂类型推理
+
+```python
+from datasets import load_dataset
+dataset = load_dataset('json', data_files='my_file.json')
+```
+
+一种常见的情况是，JSON文件具有一个根字典，其中数据集包含在特定字段中。
+
+```json
+{"version": "0.1.0",
+ "data": [{"a": 1, "b": 2.0, "c": "foo", "d": false},
+          {"a": 4, "b": -5.5, "c": null, "d": true}]
+}
+```
+
+在这种情况下，需要使用`field`参数指定哪个字段包含数据集：
+
+```python
+from datasets import load_dataset
+dataset = load_dataset('json', data_files='my_file.json', field='data')
+```
+
+#### Text文件
+
+生成一个列名为`text`的单列数据集，其中包含作为字符串的输入文件的所有文本行。
+
+```python
+from datasets import load_dataset
+dataset = load_dataset('text', data_files={'train': ['my_text_1.txt', 'my_text_2.txt'], 'test': 'my_test_file.txt'})
+```
+
+#### 内存中的数据
+
+##### python dictionary
+
+```python
+my_dict = {'id': [0, 1, 2],
+           'name': ['mary', 'bob', 'eve'],
+           'age': [24, 53, 19]}
+from datasets import Dataset
+dataset = Dataset.from_dict(my_dict)
+```
+
+##### pandas dataframe
+
+```python
+from datasets import Dataset
+import pandas as pd
+df = pd.DataFrame({"a": [1, 2, 3]})
+dataset = Dataset.from_pandas(df)
+```
+
+### 操作数据集
+
+```python
+len(dataset)
+# 3668
+dataset[0]
+# {'idx': 0,
+#  'label': 1,
+#  'sentence1': 'Amrozi accused his brother , whom he called " the witness " , of deliberately distorting his evidence .',
+#  'sentence2': 'Referring to him as only " the witness " , Amrozi accused his brother of deliberately distorting his evidence .'}
+dataset.shape
+# (3668, 4)
+dataset.num_columns
+# 4
+dataset.num_rows
+# 3668
+dataset.column_names
+# ['idx', 'label', 'sentence1', 'sentence2']
+dataset.features
+# {'idx': Value(dtype='int32', id=None),
+#  'label': ClassLabel(num_classes=2, names=['not_equivalent', 'equivalent'], names_file=None, id=None),
+#  'sentence1': Value(dtype='string', id=None),
+#  'sentence2': Value(dtype='string', id=None),
+# }
+dataset.features['label'].num_classes
+# 2
+dataset.features['label'].names
+# ['not_equivalent', 'equivalent']
+dataset.features['label'].str2int('equivalent')
+# 1
+dataset.features['label'].str2int('not_equivalent')
+# 0
+
+# 切片等操作
+dataset[:3]
+dataset[[1, 3, 5]]
+dataset['sentence1'][:3]
+dataset[2:5]['sentence1'] == dataset['sentence1'][2:5]
+```
+
+使用`datasets.Dataset.set_format()`处理为其他类型的数据。
+
+- `type` (`Union[None, str]`, default to `None`) defines the return type for the dataset `__getitem__` method and is one of `[None, 'numpy', 'pandas', 'torch', 'tensorflow', 'jax']` (`None` means return python objects),
+- `columns` (`Union[None, str, List[str]]`, default to `None`) defines the columns returned by `__getitem__` and takes the name of a column in the dataset or a list of columns to return (`None` means return all columns),
+- `output_all_columns` (`bool`, default to `False`) controls whether the columns which cannot be formatted (e.g. a column with `string` cannot be cast in a PyTorch Tensor) are still outputted as python objects.
+- `format_kwargs` can be used to provide additional keywords arguments that will be forwarded to the convertiong function like `np.array`, `torch.tensor`, `tensorflow.ragged.constant` or `jnp.array`. For instance, to create `torch.Tensor` directly on the GPU you can specify `device='cuda'`.
+
+```python
+dataset.set_format(type='torch', columns=['label'])
+dataset[0]
+# {'label': tensor(1)}
+```
+
 ### 预处理数据集
 
 我们不能对数据集中的数据直接使用`tokenizer`方法，因为该方法会将数据全部加载进内存。因此使用`Dataset.map`方法将数据生成数据集，该方法的第一个参数为一个函数，在map时可以对数据集中的每个元素使用该函数。
@@ -738,3 +895,4 @@ metric.compute()
   from accelerate import notebook_launcher
   notebook_launcher(training_function)
   ```
+
