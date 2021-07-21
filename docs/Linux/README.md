@@ -143,3 +143,10 @@ r->4 w->2 x->1
 
 管道：一个命令的输出可以通过管道作为另一个命令的输出。`|`左边写东西，右边读东西。
 
+## 其他功能
+
+监控gpu使用
+
+`nvidia-smi`
+
+`watch --color -d -n 0.1 "gpustat --color && df -h | grep /dev/sdb1 && df -h| grep /dev/mapper`

@@ -12,10 +12,15 @@
     * [jQuery](jQuery/README)
     * [Django](Django/README)
     * [Ajax](Ajax/README)
+    * [VS Code](VScode/README)
 
 * 算法博客
     * [Transformer](Transformer/Transformer.md)
     * [序列标注](nlp/README)
     * [Huggingface Transformers](Transformers/README)
+    * [Pytorch](pytorch/README)
+
+* 项目经历
+    * [授信报告的主客体关系抽取]
 
 * 生活感悟
