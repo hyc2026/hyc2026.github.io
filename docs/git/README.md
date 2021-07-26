@@ -62,7 +62,9 @@ https://www.liaoxuefeng.com/wiki/896043488029600
 + 合并分支时，加上`--no-ff`参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而`fast forward`合并就看不出来曾经做过合并。
 + `git merge --no-ff -m "commit message" <branch name>`
 
-`git branch -d <branch name>` 删除分支
+`git branch -d <branch name>` 删除本地分支
+
+`git push origin --delete <branch name>` 删除远程分支
 
 git无法自动合并分支时，首先需要解决冲突，即把合并失败的文件手动编辑为我们希望的内容
 

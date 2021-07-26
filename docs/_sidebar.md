@@ -21,6 +21,6 @@
     * [Pytorch](pytorch/README)
 
 * 项目经历
-    * [授信报告的主客体关系抽取]
+    * [授信报告的主客体关系抽取](sxbg/README)
 
 * 生活感悟

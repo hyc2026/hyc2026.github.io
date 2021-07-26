@@ -145,8 +145,11 @@ r->4 w->2 x->1
 
 ## 其他功能
 
-监控gpu使用
+### 监控gpu使用
 
 `nvidia-smi`
 
-`watch --color -d -n 0.1 "gpustat --color && df -h | grep /dev/sdb1 && df -h| grep /dev/mapper`
+### 连接服务器
+
+.ssh/id_rsa.pub拷贝到服务器的~/.ssh/authorized_keys
+
