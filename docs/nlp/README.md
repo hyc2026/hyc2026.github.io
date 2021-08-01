@@ -88,6 +88,14 @@ CRF损失函数由两部分组成，真实路径分数和所有路径总分数�
 
 $$ P_{total}=P_1+P_2+\dots+P_N=e^{S_1}+e^{S_2}+\dots+e^{S_N}\\LogLossFunction\\=-log\frac{P_{RealPath}}{P_1+P_2+\dots+P_N}\\=-log\frac{e^{S_{RealPath}}}{e^{S_1}+e^{S_2}+\dots+e^{S_N}}\\=-(S_{RealPath}-log(e^{S_1}+e^{S_2}+\dots+e^{S_N}))$$
 
+<font face="楷体">已知转移矩阵和发射矩阵，可以求路径得分</font>
+
+<font face="楷体">计算真实路径的得分：每个节点记录之前所有结点到该节点路径的最大值</font>
+
+<font face="楷体">计算所有路径的总得分：每个节点记录之前所有结点到该节点的路径总和</font>
+
+<font face="楷体">真实路径的得分与所有路径的总得分的比值尽可能大，用该指标作为损失进行反向传播来更新转移矩阵和发射矩阵的值</font>
+
 计算所有路径的总得分(Viterbi算法)：
 
 ```python
@@ -97,7 +105,7 @@ def log_sum_exp(vec):
     return max_score +  torch.log(torch.sum(torch.exp(vec - max_score_broadcast)))
 ```
 
-定义两个矩阵previous和obs：
+定义两个矩阵previous和obs，其中previous表示第i步的m种状态，写成列向量进行横向扩展；obs表示第i+1步的m种状态，写成行向量进行纵向扩展。与转移矩阵相加之后获得了i到i+1状态的所有可能路径的得分，将末状态相同的得分**相加**(同一列)获得下一个状态的previous。计算最优路径是将**相加**改为**求最大值**。
 
 ![matrix](matrix.png)
 
@@ -124,8 +132,7 @@ def prepare_sequence(seq, to_ix):
 def log_sum_exp(vec):
     max_score = vec[0, argmax(vec)]
     max_score_broadcast = max_score.view(1, -1).expand(1, vec.size()[1])
-    return max_score + \
-        torch.log(torch.sum(torch.exp(vec - max_score_broadcast)))
+    return max_score + torch.log(torch.sum(torch.exp(vec - max_score_broadcast)))
 
 class BiLSTM_CRF(nn.Module):
 
