@@ -23,6 +23,7 @@
     * [自然语言处理](nlp/)
         * [知识图谱](nlp/kg/kg.md)
         * [机器翻译](nlp/nmt/README.md)
+        * [关系抽取](nlp/multi_rel/多重关系抽取.md)
 
 * 项目经历
     * [授信报告的主客体关系抽取](sxbg/README)
