@@ -66,6 +66,10 @@ https://www.liaoxuefeng.com/wiki/896043488029600
 
 `git push origin --delete <branch name>` 删除远程分支
 
+`git rm --cached <file name>` 删除文件的跟踪，保留本地文件
+
+`git rm -f --cached <file name>` 删除文件的跟踪，并删除本地文件
+
 git无法自动合并分支时，首先需要解决冲突，即把合并失败的文件手动编辑为我们希望的内容
 
 `git log --graph` 查看分支合并图
