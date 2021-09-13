@@ -21,7 +21,7 @@
     * [Pytorch](pytorch/README)
     * [CS224n](cs224n/README)
     * [机器学习](ml/)
-        * [支持向量机](ml/svm.md)
+        * [支持向量机](ml/svm/svm.md)
     * [自然语言处理](nlp/)
         * [知识图谱](nlp/kg/kg.md)
         * [机器翻译](nlp/nmt/README.md)

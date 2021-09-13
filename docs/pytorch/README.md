@@ -37,7 +37,7 @@ a.shape # # torch.Size([2])
 a = torch.randn(2, 3)
 a.shape # torch.Size([2, 3])
 a.size(1) a.shape[1] # 3
-a.numel() # 2*3=6
+a.numel() # 2*3=6 number of element
 a.dim() # 2
 ```
 
