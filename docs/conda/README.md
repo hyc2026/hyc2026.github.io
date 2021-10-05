@@ -20,6 +20,8 @@
 
 `conda remove -n my_py_env --all` 删除环境
 
+`conda list -n my_py_env` 查看环境中安装的所有包
+
 **PackagesNotFoundError:**
 
 + `anaconda search -t conda packname`

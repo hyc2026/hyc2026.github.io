@@ -3,6 +3,7 @@
     * [Linux](Linux/README) 
     * [git相关操作](git/README)
     * [conda相关操作](conda/README)
+    * [C指针](C/c语言指针探秘)
     * [Python](Python/python)
     * [网络编程](Socket/README)
     * [Html](Html/README)
@@ -13,7 +14,7 @@
     * [Django](Django/README)
     * [Ajax](Ajax/README)
     * [VS Code](VScode/README)
-
+    
 * 算法博客
     * [Transformer](Transformer/Transformer.md)
     * [序列标注](nlp/seq_label)
