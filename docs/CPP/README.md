@@ -251,7 +251,7 @@ map<string, string> authors = { {"LeBron Jaames", "Lakers"},
                                 {"Stephen Curry", "Warriors"} };
 ```
 
-关键字需要**严格弱序**
+对于有序容器，关键字类型必须定义元素的比较方法，默认情况下，标准库使用关键字类型的<运算符来比较两个关键词。关键字需要**严格弱序**
 
 pair定义在头文件utility中，一个pair保存两个数据成员，pair是一个用来生成特定类型的模板。
 pair的数据成员是public的，两个成员分别命名为first和second。
