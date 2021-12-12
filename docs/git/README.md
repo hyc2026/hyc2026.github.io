@@ -113,7 +113,7 @@ git无法自动合并分支时，首先需要解决冲突，即把合并失败�
 
 `git rebase` 把本地未push的分叉提交历史整理成直线
 
-```
+```shell
 git checkout master
 git pull
 git checkout local
@@ -151,7 +151,7 @@ $ git pull origin master
 `cnpmjs.org` https://github.com.cnpmjs.org/
 
 ## 克隆加速
-```
+```shell
 #原地址
 git clone https://github.com/kubernetes/kubernetes.git
 
@@ -166,7 +166,7 @@ git clone https://gitclone.com/github.com/kubernetes/kubernetes.git
 ```
 
 ## release下载加速
-```
+```shell
 #原地址
 wget https://github.com/goharbor/harbor/releases/download/v2.0.2/harbor-offline-installer-v2.0.2.tgz
 
@@ -175,7 +175,7 @@ wget https://hub.fastgit.org/goharbor/harbor/releases/download/v2.0.2/harbor-off
 ```
 
 ## 免替换方法
-```
+```shell
 git config --global url."https://hub.fastgit.org".insteadOf https://github.com
 
 #测试
@@ -183,12 +183,12 @@ git clone https://github.com/kubernetes/kubernetes.git
 ```
 
 ## 查看git配置信息
-```
+```shell
 git config --global --list
 ```
 
 ## 取消设置
-```
+```shell
 git config --global --unset url.https://github.com/.insteadof
 ```
 
@@ -208,3 +208,16 @@ GitHub 文件加速：https://gh.api.99988866.xyz/
 Github仓库加速：https://github.zhlh6.cn/
 
 Github仓库加速：http://toolwa.com/github/
+
+## warning: LF will be replaced by CRLF
+
+windows中的换行符为` CRLF`， linux中的换行符为`LF`
+
+git add时，系统提示LF 将被转换成 CRLF
+
+解决方法：
+
+```shell
+git config --global core.autocrlf false 
+```
+
