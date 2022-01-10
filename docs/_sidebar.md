@@ -4,6 +4,7 @@
     * [git相关操作](git/README)
     * [conda相关操作](conda/README)
     * [C指针](C/c语言指针探秘)
+    * [常用工具](tool/README)
     * [C++](CPP/README)
     * [Python](Python/python)
     * [网络编程](Socket/README)
