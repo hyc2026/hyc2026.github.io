@@ -1510,4 +1510,6 @@ while True:
   + s = b"root"  本质上用字节存储
   + 编码：默认utf-8
 
- 
+### python文件变成exe
+1. `pip install pyinstaller`
+2. `pyinstaller -w -F -p . main.py`
