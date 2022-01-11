@@ -395,9 +395,3 @@
 
 1. **From Symbols to Embeddings: A Tale of Two Representations in Computational Social Science**.
    *Huimin Chen, Cheng Yang, Xuanming Zhang, Zhiyuan Liu, Maosong Sun, Jianbin Jin*. arXiv 2021. [[paper](https://arxiv.org/pdf/2106.14198)].
-
-## Acknowledgements
-
-Great thanks to other contributor [Shengding Hu](https://github.com/ShengdingHu), [Chenglei Si](https://github.com/NoviScl) and [Han-Gil Kim](https://github.com/uoneway)! (names are not listed in particular order)
-
-Please contact us if we miss your names in this list, we will add you back ASAP!
