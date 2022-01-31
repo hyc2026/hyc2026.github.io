@@ -1499,6 +1499,15 @@ while True:
     `-- logs.log
 ```
 
+### Development Tips
+
+- Code Readability
+  + [PEP 8 -- Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/)
+  + [Auto Formatter YAPF](https://github.com/google/yapf)
+
+- Code Scalability
+  + [Design pattern for Python](https://github.com/linkedin/dr-elephant)
+
 ### 字符串&编码
 
 + py2
