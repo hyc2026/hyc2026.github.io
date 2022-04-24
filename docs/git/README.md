@@ -222,10 +222,3 @@ git add时，系统提示LF 将被转换成 CRLF
 ```shell
 git config --global core.autocrlf false 
 ```
-
-## 生成ssh key
-
-```
-ssh-keygen -t rsa -C "your_email@example.com"
-```
-
