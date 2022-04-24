@@ -209,6 +209,8 @@ Github仓库加速：https://github.zhlh6.cn/
 
 Github仓库加速：http://toolwa.com/github/
 
+# 其他问题
+
 ## warning: LF will be replaced by CRLF
 
 windows中的换行符为` CRLF`， linux中的换行符为`LF`
@@ -219,5 +221,11 @@ git add时，系统提示LF 将被转换成 CRLF
 
 ```shell
 git config --global core.autocrlf false 
+```
+
+## 生成ssh key
+
+```
+ssh-keygen -t rsa -C "your_email@example.com"
 ```
 

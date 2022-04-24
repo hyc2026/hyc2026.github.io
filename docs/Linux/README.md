@@ -153,3 +153,11 @@ r->4 w->2 x->1
 
 .ssh/id_rsa.pub拷贝到服务器的~/.ssh/authorized_keys
 
+authorized_keys的权限必须是644 (chmod 644 authorized_keys)
+
+### 生成ssh key
+
+`ssh-keygen -t rsa -C "your_email@example.com"` --> `~/.ssh/id_rsa.pub`
+
+
+
