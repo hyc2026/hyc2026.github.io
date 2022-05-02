@@ -11,12 +11,22 @@
 + `array`: 固定大小数组，支持快速随机访问，不能添加或删除元素
 + `string`: 与`vector`类似的容器，专门保存字符；保存在连续内存空间
 
+#### Tips：
+
++ 除非有很好的理由选择其他容器，否则应使用vector
++ 如果有很多小元素，且空间的额外开销很重要，则不要使用list和forward_list
++ 随机访问使用vector和deque
++ 中间插入或删除list或forward_list
++ 头尾插入或删除deque
+
+如果不确定应用哪种容器，可以只使用vector和list的公共操作：使用迭代器，不使用下标，避免随机访问。这样可以随时切换容器。
+
 #### 容器操作：
 
 + 类型别名：
   + iterator
   + const_iterator
-  + size_type
+  +   
   + difference_type
   + value_type
   + reference
@@ -320,4 +330,3 @@ lower_bount和upper_bound不适用于无序容器；下标和at只适用于非co
 + c.reserve(n); 重组存储，使得c可以保存n个元素且不必rehash
 
 ### 动态内存
-
