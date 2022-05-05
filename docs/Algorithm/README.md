@@ -1,5 +1,20 @@
 # Algorithm
 
+## Master Theorem
+
+$$
+f(n)=d,若n=1\\
+=af(n/c)+bn^x,若n\ge2
+$$
+
+的解是
+$$
+f(n)=bn^xlog_cn+dn^x,若a=c^x\\
+f(n)=(d+\frac{bc^x}{a-c^x})n^{log_ca}-(\frac{bc^x}{a-c^x})n^x,若a
+\ne c^x
+$$
+
+
 ## Linked list
 
 ```python
