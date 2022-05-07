@@ -125,16 +125,16 @@ void mSort(vector<int>& nums, vector<int>& tempNums, int lstart, int rend) {
     	mergeArray(nums, tempNums, lstart, center+1, rend); // 主要这里是center+1
     }
 }
+
+void mergeSort(vector<int>& nums) {
+    vector<int> tempNums(nums);
+    mSort(nums, tempNums, 0, nums.size() - 1);
+}
 ```
 
 ### heapSort
 
 ```c++
-void mergeSort(vector<int>& nums) {
-    vector<int> tempNums(nums);
-    mSort(nums, tempNums, 0, nums.size() - 1);
-}
-
 void downAdjust(vector<int>& nums, int low, int high) {
     int i = low, j = 2 * i + 1; // i是待调整结点,j是它的左节点
 	while (j <= high) { // 存在孩子结点
@@ -152,7 +152,7 @@ void downAdjust(vector<int>& nums, int low, int high) {
 }
 
 void heapSort(vector<int>& nums) {
-	for (int i = nums.size()/ 2-1; i >= 0; --i) {
+	for (int i = nums.size() / 2 - 1; i >= 0; --i) {
 		downAdjust(nums, i, nums.size() - 1); // 最后一个结点是nums.size() - 1
 	}
 	for (int i = nums.size() - 1; i > 0; --i) {
