@@ -8,6 +8,22 @@ word2vec是NNLM的一个较为典型的代表，其利用了DNN的方法来训�
 
 word2vec从宏观上描述了DNN的一个结构，从输入（大致带过分词，词表构建，one-hot等过程），到隐层，到输出层。然后详细讲了两种训练结构，即CBoW和Skip-Gram，但是当时这两种方法被我说反了。（当时并无觉察）讲完两种训练方法后，大致介绍了下训练时候词表大小过大，输出层过大的优化方法，即：**hierarchical softmax**和**negative sampling**。
 
+#### CBOW(Continuous Bag-of-Words)
+
+1 输入层：上下文单词的onehot. {假设单词向量空间dim为V，上下文单词个数为C}
+
+2 所有onehot分别乘以共享的输入权重矩阵W. {V*N矩阵，N为自己设定的数，初始化权重矩阵W}*
+
+*3 所得的向量 {因为是onehot所以为向量} 相加求平均作为隐层向量, size为1*N.
+
+4 乘以输出权重矩阵W' {N*V}*
+
+*5 得到向量 {1*V} 激活函数处理得到V-dim概率分布 {PS: 因为是onehot嘛，其中的每一维斗代表着一个单词}
+
+6 概率最大的index所指示的单词为预测出的中间词（target word）与true label的onehot做比较，误差越小越好（根据误差更新权重矩阵）
+
+所以，需要定义loss function（一般为交叉熵代价函数），采用梯度下降算法更新W和W'。训练完毕后，输入层的每个单词与矩阵W相乘得到的向量的就是我们想要的词向量（word embedding），这个矩阵（所有单词的word embedding）也叫做look up table（其实聪明的你已经看出来了，其实这个look up table就是矩阵W自身），也就是说，任何一个单词的onehot乘以这个矩阵都将得到自己的词向量。有了look up table就可以免去训练过程直接查表得到单词的词向量了。
+
 #### Skip-Gram
 
 [理解 Word2Vec 之 Skip-Gram 模型](https://zhuanlan.zhihu.com/p/27234078)
@@ -35,6 +51,12 @@ Word2Vec模型实际上分为了两个部分，**第一部分为建立模型，�
    >  在论文中，作者指出指出对于小规模数据集，选择5-20个negative words会比较好，对于大规模数据集可以仅选择2-5个negative words。
 
    一个单词被选作negative sample的概率跟它出现的频次有关，出现频次越高的单词越容易被选作negative words。
+   
+4. hierarchical softmax
+
+   和传统的神经网络输出不同的是，word2vec的hierarchical softmax结构是把输出层改成了一颗哈夫曼树，其中图中白色的叶子节点表示词汇表中所有的|V|个词,黑色节点表示非叶子节点,每一个叶子节点也就是每一个单词,都对应唯一的一条从root节点出发的路径。我们的目的是使的w=wO这条路径的概率最大，即: P(w=wO|wI)最大,假设最后输出的条件概率是W2最大，那么我只需要去更新从根结点到w2这一个叶子结点的路径上面节点的向量即可，而不需要更新所有的词的出现概率，这样大大的缩小了模型训练更新的时间。
+
+   假设我们要计算W2叶子节点的概率，我们需要从根节点到叶子结点计算概率的乘积。我们知道，本模型替代的只是原始模型的softmax层，因此，某个非叶子节点的值即隐藏层到输出层的结果仍然是uj，我们对这个结果进行sigmoid之后，得到节点往左子树走的概率p，1-p则为往右子树走的概率。关于这棵树的训练方式比较复杂，但也是通过梯度下降等方法，这里不详述
 
 #### GloVe
 
@@ -43,6 +65,32 @@ GloVe模型既使用了语料库的全局统计（overall statistics）特征，
 [详解GloVe词向量模型](https://blog.csdn.net/buchidanhuang/article/details/98471741)
 
 [通俗易懂理解——Glove算法原理](https://zhuanlan.zhihu.com/p/42073620)
+
+![glove](glove.png)
+
+#### FastText
+
+一般情况下，使用fastText进行文本分类的同时也会产生词的embedding，即embedding是fastText分类的产物。除非你决定使用预训练的embedding来训练fastText分类模型，这另当别论。
+
+**字符级别的n-gram**
+
+word2vec把语料库中的每个单词当成原子的，它会为每个单词生成一个向量。这忽略了单词内部的形态特征，比如：“apple” 和“apples”，“达观数据”和“达观”，这两个例子中，两个单词都有较多公共字符，即它们的内部形态类似，但是在传统的word2vec中，这种单词内部形态信息因为它们被转换成不同的id丢失了。
+
+**为了克服这个问题，fastText使用了字符级别的n-grams来表示一个单词。**对于单词“apple”，假设n的取值为3，则它的trigram有:
+
+**“<ap”, “app”, “ppl”, “ple”, “le>”**
+
+其中，<表示前缀，>表示后缀。于是，我们可以用这些trigram来表示“apple”这个单词，进一步，我们可以用这5个trigram的向量叠加来表示“apple”的词向量。
+
+**这带来两点好处：**
+
+1. 对于低频词生成的词向量效果会更好。因为它们的n-gram可以和其它词共享。
+
+2. 对于训练词库之外的单词，仍然可以构建它们的词向量。我们可以叠加它们的字符级n-gram向量。
+
+**不同的是，**CBOW的输入是目标单词的上下文，fastText的输入是多个单词及其n-gram特征，这些特征用来表示单个文档；CBOW的输入单词被onehot编码过，fastText的输入特征是被embedding过；CBOW的输出是目标词汇，fastText的输出是文档对应的类标。
+
+**值得注意的是，fastText在输入时，将单词的字符级别的n-gram向量作为额外的特征；在输出时，fastText采用了分层Softmax，大大降低了模型训练时间。**这两个知识点在前文中已经讲过，这里不再赘述。
 
 ###                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Subword
 
@@ -156,7 +204,7 @@ $$
 
 可以看出，ULM会保留那些以较高频率出现在很多句子的分词结果中的子词，因为这些子词如果被丢弃，其损失会很大。
 
-### Transformer、ELMo、GPT和Bert
+### Transformer、ELMo、GPT、Bert和XLNET
 
 #### Attention
 
@@ -175,6 +223,8 @@ $$
 一种解释是空间维度很高，所以模型总能分开各个组分。
 
 三个向量concat之后走一次全连接，等价于各自embedding之后相加。
+
+[XLNet:运行机制及和Bert的异同比较](https://zhuanlan.zhihu.com/p/70257427)
 
 ### HMM和CRF
 
