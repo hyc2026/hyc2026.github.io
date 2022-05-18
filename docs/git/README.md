@@ -57,6 +57,10 @@ https://www.liaoxuefeng.com/wiki/896043488029600
 
 `git branch` 查看当前所有分支
 
+`git branch -a` 查看所有分支(包括远程分支)
+
+`git checkout -b <branch name> <remote branch>` 本地切换到远程分支
+
 `git merge <branch name>` 快速合并分支，将`<branch name>`合并给当前分支
 
 + 合并分支时，加上`--no-ff`参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而`fast forward`合并就看不出来曾经做过合并。
