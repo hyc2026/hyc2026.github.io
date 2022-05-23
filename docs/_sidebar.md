@@ -29,7 +29,7 @@
     
     * [Pytorch](pytorch/README)
     
-    * [CS224n](cs224n/README)
+    * [CS224u](cs224u/README)
     
     * [机器学习](ml/)
         * [支持向量机](ml/svm/svm.md)
