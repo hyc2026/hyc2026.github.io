@@ -40,5 +40,6 @@
     * [授信报告的主客体关系抽取](sxbg/README)
     * [低GPU利用率的实证研究](GPUUtil/README)
     * [伪科学鉴别](fakescience/README)
+    * [实体链接](entitylinking/README)
     
 * 生活感悟
