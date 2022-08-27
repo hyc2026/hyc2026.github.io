@@ -30,7 +30,7 @@
         * [支持向量机](ml/svm/svm.md)
     * [自然语言处理](nlp/)
         * [面经](nlp/experience/README)
-        * [必读论文](nlp/paper/README)
+        * [可读论文](nlp/paper/README)
         * [知识图谱](nlp/kg/kg.md)
         * [机器翻译](nlp/nmt/README.md)
         * [关系抽取](nlp/multi_rel/多重关系抽取.md)
