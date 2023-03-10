@@ -64,16 +64,7 @@
 
 **Flat NER**
 
-• [MSRA_NER](https://github.com/InsaneLife/ChineseNLPCorpus/tree/master/NER/MSRA)
-• [WeiboNER](https://github.com/hltcoe/golden-horse)
-• OntoNotes5.0 (包含中文): [link] 
-• COLL-2003: [link] 
-• Nested NER
-• ACE2004 (包含中文):[link] 
-• ACE2005 (包含中文):[link] 
-• GENIA: [link] 
-• KBP-2017: [link]
-• 其他中文NER语料: [link
+![dataset](dataset.png)
 
 ### 公开baseline
 
