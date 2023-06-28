@@ -39,11 +39,12 @@
     * [表格信息抽取](table/README)
     
 * 项目经历
-    * [授信报告的主客体关系抽取](sxbg/README)
-    * [低GPU利用率的实证研究](GPUUtil/README)
-    * [实体链接](entitylinking/README)
     * [内容质量-虚假](fakenews/README)
+    * [低GPU利用率的实证研究](GPUUtil/README)
     * [提交消息自动生成技术研究](come/README)
+    * [C语言子集编译器](compile/README)
+    * [授信报告的主客体关系抽取](sxbg/README)
+    * [实体链接](entitylinking/README)
     * [基于扩散模型的对抗样本自动生成技术研究](advers/README)
     * [运单地址知识图谱构建](waybill/README)
     
