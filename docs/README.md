@@ -4,7 +4,7 @@
 
 ### 补充材料
 
-[成绩证明和获奖证书](supporta/README)
+[成绩证明和获奖证书](supports/README)
 
 ### 项目经理
 
