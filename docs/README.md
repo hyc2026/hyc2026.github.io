@@ -2,9 +2,9 @@
 
 ![title](title.png)
 
-### 成绩等证明
+### 补充材料
 
-
+[成绩证明和获奖证书](supporta/README)
 
 ### 项目经理
 
