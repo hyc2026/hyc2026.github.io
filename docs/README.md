@@ -6,7 +6,7 @@
 
 [成绩证明和获奖证书](supports/README)
 
-### 项目经理
+### 项目经历
 
 [内容质量-虚假](fakenews/README)
 
