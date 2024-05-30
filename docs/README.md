@@ -4,6 +4,8 @@
 
 ### Publications and Awards
 
+**He Y\***, Feng P\*, Huang G\*, et al. AGILE: A Novel Framework of LLM Agents[J]. arXiv preprint arXiv:2405.14751, 2024.
+
 Gao Y, **He Y**, Li X, et al. An Empirical Study on Low GPU Utilization of Deep Learning Jobs[C]. Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 2024: 1-13.
 
 **He Y**, Wang L, Wang K, et al. COME: Commit Message Generation with Modification Embedding[C]. Proceedings of the 32nd ACM SIGSOFT International Symposium on Software Testing and Analysis. 2023: 792-803.
@@ -18,9 +20,23 @@ Wang L, Tang X, **He Y**, et al. Delving into commit-issue correlation to enhanc
 
 ### 项目经历
 
-2022.05 - 2024.05 [内容质量-虚假识别](fakenews/README)
+2022.04 - 2024.05 [AGILE: A Novel Framework of LLM Agents](https://arxiv.org/pdf/2405.14751)
+
+2022.05 - 2024.03 [内容质量-虚假识别](fakenews/README)
+
+2021.10 - 2022.05 [An Empirical Study on Low GPU Utilization of Deep Learning Jobs](https://dl.acm.org/doi/abs/10.1145/3597503.3639232)
 
 2021.06 - 2021.09 [授信报告要素结构化](sxbg/README)
+
+### 热门博客
+
+[Transformer](Transformer/Transformer.md)
+
+[强化学习](rl/README)
+
+[Huggingface Transformers](Transformers/README)
+
+[git相关操作](git/README)
 
 ### 个人简历
 

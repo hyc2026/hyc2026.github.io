@@ -24,6 +24,7 @@
     
 * 算法博客
     * [Transformer](Transformer/Transformer.md)
+    * [强化学习](rl/README)
     * [序列标注](nlp/seq_label)
     * [Huggingface Transformers](Transformers/README)
     * [Pytorch](pytorch/README)
