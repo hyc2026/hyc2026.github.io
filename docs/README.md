@@ -4,13 +4,13 @@
 
 ### Publications
 
-- Feng P\*, **He Y\***, Huang G\*, et al. AGILE: A Novel Framework of LLM Agents[J]. arXiv preprint arXiv:2405.14751, 2024.
+- Feng P\*, **He Y\***, Huang G\*, et al. AGILE: A Novel Framework of LLM Agents[J]. arXiv preprint arXiv:2405.14751, 2024. [link](https://arxiv.org/pdf/2405.14751)
 
-- Gao Y, **He Y**, Li X, et al. An Empirical Study on Low GPU Utilization of Deep Learning Jobs[C]. Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 2024: 1-13.
+- Gao Y, **He Y**, Li X, et al. An Empirical Study on Low GPU Utilization of Deep Learning Jobs[C]. Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 2024: 1-13. [link](https://dl.acm.org/doi/abs/10.1145/3597503.3639232)
 
-- **He Y**, Wang L, Wang K, et al. COME: Commit Message Generation with Modification Embedding[C]. Proceedings of the 32nd ACM SIGSOFT International Symposium on Software Testing and Analysis. 2023: 792-803.
+- **He Y**, Wang L, Wang K, et al. COME: Commit Message Generation with Modification Embedding[C]. Proceedings of the 32nd ACM SIGSOFT International Symposium on Software Testing and Analysis. 2023: 792-803. [link](https://dl.acm.org/doi/pdf/10.1145/3597926.3598096)
 
-- Wang L, Tang X, **He Y**, et al. Delving into commit-issue correlation to enhance commit message generation models[C]. 2023 38th IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 2023: 710-722.
+- Wang L, Tang X, **He Y**, et al. Delving into commit-issue correlation to enhance commit message generation models[C]. 2023 38th IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 2023: 710-722. [link](https://ieeexplore.ieee.org/abstract/document/10298473)
 
 ### Projects
 
