@@ -40,7 +40,7 @@
     * [表格信息抽取](table/README)
     
 * 项目经历
-    * [内容质量-虚假](fakenews/README)
+    <!-- * [内容质量-虚假](fakenews/README) -->
     * [低GPU利用率的实证研究](GPUUtil/README)
     * [提交消息自动生成技术研究](come/README)
     * [C语言子集编译器](compile/README)

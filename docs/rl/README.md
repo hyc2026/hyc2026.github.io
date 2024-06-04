@@ -2,6 +2,8 @@
 
 ## Concept
 
+[reference](https://www.bilibili.com/video/BV1TQ4y1v7H5/)
+
 ### Random Variable
 
 A variable whose values depend on outcomes of a random event.
@@ -65,6 +67,8 @@ The agnet can be controlled by either $\pi(a|s) $(policy-based method) or $Q^*(s
 
 ## Value-based Method
 
+[reference](https://www.bilibili.com/video/BV1aY411W7Wv/)
+
 Optimal Action-Value Function
 $$Q^*(s_t,a_t)=\underset{\pi}{\mathrm{max}}\ Q_\pi(s_t,a_t)$$
 - Whatever policy function $\pi$ is used, the result of taking $a_t$ at state $s_t$ cannot be better than $Q^*(s_t,a_t)$
@@ -99,32 +103,36 @@ $\underbrace{Q(s_t,a_t;\mathbf{w})}_{\approx\mathbb{E[U_t]\ (\mathrm{Prediction}
 
 ## Policy-based Method
 
+[reference](https://www.bilibili.com/video/BV1SF411z78g/)
+
+[reference](https://www.bilibili.com/video/BV1aY411W7Wv/)
+
 Policy function $\pi(a|s)$ is a probability density function (PDF).
 
-Policy Network: Use a neural network $\pi(a|s;\mathbf{\theta})$ to approximate policy function $\pi(a|s)$.
+Policy Network: Use a neural network $\pi(a|s;\pmb{\theta})$ to approximate policy function $\pi(a|s)$.
 
-Approximate value function $V(s_t;\mathbf{\theta})=\sum_a\pi(a|s_t;\mathbf{\theta})\cdot Q_\pi(s_t,a)$.
+Approximate value function $V(s_t;\pmb{\theta})=\sum_a\pi(a|s_t;\pmb{\theta})\cdot Q_\pi(s_t,a)$.
 
-Policy-based Learning: Learn $\theta$ that maximizes $\mathcal{J}(\mathbf{\theta})=\mathbb{E}_S[V(S;\mathbf{\theta})]$.
-- update policy by policy stochastic gradient ascent: $\mathbf{\theta}\leftarrow\mathbf{\theta}+\eta\cdot\frac{\partial V(s;\mathbf{\theta})}{\partial\mathbf{\theta}}$.
+Policy-based Learning: Learn $\theta$ that maximizes $\mathcal{J}(\pmb{\theta})=\mathbb{E}_S[V(S;\pmb{\theta})]$.
+- update policy by policy stochastic gradient ascent: $\pmb{\theta}\leftarrow\pmb{\theta}+\eta\cdot\frac{\partial V(s;\pmb{\theta})}{\partial\pmb{\theta}}$.
 
-  $\begin{aligned}\frac{\partial V(s;\mathbf{\theta})}{\partial \mathbf{\theta}} &= \frac{\partial\sum_a\pi(a|s;\mathbf{\theta})\cdot Q_\pi(s,a)}{\partial\mathbf{\theta}}\\ &= \sum_a\frac{\partial\pi(a|s;\mathbf{\theta})\cdot Q_\pi(s,a)}{\partial\mathbf{\theta}}\\ &= \sum_a\frac{\partial\pi(a|s;\mathbf{\theta})}{\partial\mathbf{\theta}}\cdot Q_\pi(s,a)\ \mathrm{(pretend}\ Q_\pi\ \mathrm{is\ independent\ of} \ \theta.)\\ &= \sum_a\pi(a|s;\mathbf{\theta})\cdot\frac{\partial\ \mathrm{log}\ \pi(a|s;\mathbf{\theta})}{\partial\mathbf{\theta}}\cdot Q_\pi(s,a)\\ &= \mathbb{E}_A[\frac{\partial\ \mathrm{log}\ \pi(A|s;\mathbf{\theta})}{\partial\mathbf{\theta}}\cdot Q_\pi(s,A)]\end{aligned}$
+  $\begin{aligned}\frac{\partial V(s;\pmb{\theta})}{\partial \pmb{\theta}} &= \frac{\partial\sum_a\pi(a|s;\pmb{\theta})\cdot Q_\pi(s,a)}{\partial\pmb{\theta}}\\ &= \sum_a\frac{\partial\pi(a|s;\pmb{\theta})\cdot Q_\pi(s,a)}{\partial\pmb{\theta}}\\ &= \sum_a\frac{\partial\pi(a|s;\pmb{\theta})}{\partial\pmb{\theta}}\cdot Q_\pi(s,a)\ \mathrm{(pretend}\ Q_\pi\ \mathrm{is\ independent\ of} \ \theta.)\\ &= \sum_a\pi(a|s;\pmb{\theta})\cdot\frac{\partial\ \mathrm{log}\ \pi(a|s;\pmb{\theta})}{\partial\pmb{\theta}}\cdot Q_\pi(s,a)\\ &= \mathbb{E}_A[\frac{\partial\ \mathrm{log}\ \pi(A|s;\pmb{\theta})}{\partial\pmb{\theta}}\cdot Q_\pi(s,A)]\end{aligned}$
 
 - This derivation is over-simplified and not rigorous, ignoring the derivatice of $Q_\pi$.
 
 ### Two forms of policy gradient
-- Form1 for discrete action space: $\frac{\partial V(s;\mathbf{\theta})}{\partial \mathbf{\theta}} =\sum_a\frac{\partial\pi(a|s;\mathbf{\theta})}{\partial\mathbf{\theta}}\cdot Q_\pi(s,a)$
+- Form1 for discrete action space: $\frac{\partial V(s;\pmb{\theta})}{\partial \pmb{\theta}} =\sum_a\frac{\partial\pi(a|s;\pmb{\theta})}{\partial\pmb{\theta}}\cdot Q_\pi(s,a)$
 
-- Form2 for continuous action space: $\frac{\partial V(s;\mathbf{\theta})}{\partial \mathbf{\theta}} =\mathbb{E}_{A\sim\pi(\cdot|s;\mathbf{\theta})}[\frac{\partial\ \mathrm{log}\ \pi(A|s;\mathbf{\theta})}{\partial\mathbf{\theta}}\cdot Q_\pi(s,A)]$
+- Form2 for continuous action space: $\frac{\partial V(s;\pmb{\theta})}{\partial \pmb{\theta}} =\mathbb{E}_{A\sim\pi(\cdot|s;\pmb{\theta})}[\frac{\partial\ \mathrm{log}\ \pi(A|s;\pmb{\theta})}{\partial\pmb{\theta}}\cdot Q_\pi(s,A)]$
 
     Use Monte Carlo approximation to approximate expectation.
 
-    1. Randomly sample an action $\hat{a}$ according to the PDF $\pi(\cdot|s;\mathbf{\theta})$.
-    2. Calculate $\mathbf{g}(\hat{a};\mathbf{\theta})=\frac{\partial\ \mathrm{log}\ \pi(\hat{a}|s;\mathbf{\theta})}{\partial\mathbf{\theta}}\cdot Q_\pi(s,\hat{a})$.
+    1. Randomly sample an action $\hat{a}$ according to the PDF $\pi(\cdot|s;\pmb{\theta})$.
+    2. Calculate $\mathbf{g}(\hat{a};\pmb{\theta})=\frac{\partial\ \mathrm{log}\ \pi(\hat{a}|s;\pmb{\theta})}{\partial\pmb{\theta}}\cdot Q_\pi(s,\hat{a})$.
     
-        Obviously, $\mathbb{E}_A[\mathbf{g}(A;\mathbf{\theta})]=\frac{\partial V(s;\mathbf{\theta})}{\partial \mathbf{\theta}}$, $\mathbf{g}(\hat{a};\mathbf{\theta})$ is an unbiased estimate of $\frac{\partial V(s;\mathbf{\theta})}{\partial \mathbf{\theta}}$.
+        Obviously, $\mathbb{E}_A[\mathbf{g}(A;\pmb{\theta})]=\frac{\partial V(s;\pmb{\theta})}{\partial \pmb{\theta}}$, $\mathbf{g}(\hat{a};\pmb{\theta})$ is an unbiased estimate of $\frac{\partial V(s;\pmb{\theta})}{\partial \pmb{\theta}}$.
     
-    3. Use $\mathbf{g}(\hat{a};\mathbf{\theta})$ as an approximation to the policy gradient $\frac{\partial V(s;\mathbf{\theta})}{\partial \mathbf{\theta}}$.
+    3. Use $\mathbf{g}(\hat{a};\pmb{\theta})$ as an approximation to the policy gradient $\frac{\partial V(s;\pmb{\theta})}{\partial \pmb{\theta}}$.
 
     This approach alse works for discrete actions.
 
@@ -132,15 +140,15 @@ Policy-based Learning: Learn $\theta$ that maximizes $\mathcal{J}(\mathbf{\theta
 
 1. Observe the state $s_t$.
 
-2. Randomly sample action $\hat{a}$ according to $\pi(\cdot|s;\mathbf{\theta})$.
+2. Randomly sample action $\hat{a}$ according to $\pi(\cdot|s;\pmb{\theta})$.
 
 3. Compute $q_t\approx Q_\pi(s_t,a_t)$ (some estimate).
 
-4. Differentiate policy network: $\mathrm{\mathbf{d}}_{\theta,t}=\frac{\partial\ \mathrm{log}\ \pi(a_t|s_t;\mathbf{\theta})}{\partial\mathbf{\theta}}|_{\mathbf{\theta}=\mathbf{\theta}_t}$.
+4. Differentiate policy network: $\mathrm{\mathbf{d}}_{\theta,t}=\frac{\partial\ \mathrm{log}\ \pi(a_t|s_t;\pmb{\theta})}{\partial\pmb{\theta}}|_{\pmb{\theta}=\pmb{\theta}_t}$.
 
-5. (Approximate) policy gradient: $\mathbf{g}(a_t;\mathbf{\theta}_t)=q_t\cdot\mathrm{\mathbf{d}}_{\theta,t}$.
+5. (Approximate) policy gradient: $\mathbf{g}(a_t;\pmb{\theta}_t)=q_t\cdot\mathrm{\mathbf{d}}_{\theta,t}$.
 
-6. Update policy network: $\mathbf{\theta}_{t+1}=\mathbf{\theta}_t+\eta\cdot\mathbf{g}(a_t;\mathbf{\theta}_t)$.
+6. Update policy network: $\pmb{\theta}_{t+1}=\pmb{\theta}_t+\eta\cdot\mathbf{g}(a_t;\pmb{\theta}_t)$.
 
 **How to estimate $q_t$?**
 
@@ -157,19 +165,19 @@ Since $Q_\pi(s_t,a_t)=\mathbb{E}[U_t]$, we can use u_t to approximate $Q_\pi(s_t
 
 Approximate $Q_\pi(s,a)$ using a neural network $q_\pi(s,a;\mathbf{w})$.
 
-$$V(s_t;\mathbf{\theta})=\sum_a\pi(a|s)\cdot Q_\pi(s,a)\approx\sum_a\pi(a|s;\mathbf{\theta})\cdot Q_\pi(s,a;\mathbf{w})$$
+$$V(s_t;\pmb{\theta})=\sum_a\pi(a|s)\cdot Q_\pi(s,a)\approx\sum_a\pi(a|s;\pmb{\theta})\cdot Q_\pi(s,a;\mathbf{w})$$
 
-Training: Update the parameters $\mathbf{\theta}$ and $\mathbf{w}$.
+Training: Update the parameters $\pmb{\theta}$ and $\mathbf{w}$.
 
-Update policy network $\pi(a,s;\mathbf{\theta})$ to increase the state-value $V(s;\mathbf{\theta},\mathbf{w})$, supervision is purely from the value network (critic).
+Update policy network $\pi(a,s;\pmb{\theta})$ to increase the state-value $V(s;\pmb{\theta},\mathbf{w})$, supervision is purely from the value network (critic).
 
 Update value network $Q_\pi(s,a;\mathbf{w})$ to better estimate the return, supervision is purely from the rewards.
 
-1. Observe state $s_t$ and randomly sample $a_t\sim\pi(\cdot|s_t;\mathbf{\theta}_t)$.
+1. Observe state $s_t$ and randomly sample $a_t\sim\pi(\cdot|s_t;\pmb{\theta}_t)$.
 
 2. Perform $a_t$; then the environment gives new state $s_{t+1}$ and reward $r_t$.
 
-3. Randomly sample $\tilde{a}_{t+1}\sim\pi(\cdot|s_{t+1};\mathbf{\theta}_t)$.
+3. Randomly sample $\tilde{a}_{t+1}\sim\pi(\cdot|s_{t+1};\pmb{\theta}_t)$.
 
 4. Evaluate value network: $q_t=q(s_t,a_t;\mathbf{w}_t)$ and $q_t=q(s_{t+1},a_{t+1};\mathbf{w}_t)$.
 
@@ -177,7 +185,7 @@ Update value network $Q_\pi(s,a;\mathbf{w})$ to better estimate the return, supe
 
 6. Update value network: $\mathbf{w}_{t+1}=\mathbf{w}_t-\alpha\cdot\delta_t\cdot\frac{\partial~q(s_t,a_t;\mathbf{w})}{\partial~\mathbf{w}}|_{\mathbf{w}=\mathbf{w}_t}$.
 
-7. Update policy network: $\mathbf{\theta}_{t+1}=\mathbf{\theta}_t+\beta\cdot\delta_t\cdot\frac{\partial~\mathrm{log}~\pi(a_t|s_t;\mathbf{\theta})}{\partial~\mathbf{\theta}}|_{\mathbf{\theta}=\mathbf{\theta}_t}$.
+7. Update policy network: $\pmb{\theta}_{t+1}=\pmb{\theta}_t+\beta\cdot\delta_t\cdot\frac{\partial~\mathrm{log}~\pi(a_t|s_t;\pmb{\theta})}{\partial~\pmb{\theta}}|_{\pmb{\theta}=\pmb{\theta}_t}$.
 
    Using $q_t$ and $\delta_t$ here has the same expectation, while using $\delta_t$ (also called advantage) has the smaller variance.
 
