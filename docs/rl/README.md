@@ -181,7 +181,7 @@ Update value network $Q_\pi(s,a;\mathbf{w})$ to better estimate the return, supe
 
 4. Evaluate value network: $q_t=q(s_t,a_t;\mathbf{w}_t)$ and $q_t=q(s_{t+1},a_{t+1};\mathbf{w}_t)$.
 
-5. Cpmpute TD error: $\delta_t=q_t-(r_t+\gamma\cdot q_{t+1})$.
+5. Compute TD error: $\delta_t=q_t-(r_t+\gamma\cdot q_{t+1})$.
 
 6. Update value network: $\mathbf{w}_{t+1}=\mathbf{w}_t-\alpha\cdot\delta_t\cdot\frac{\partial~q(s_t,a_t;\mathbf{w})}{\partial~\mathbf{w}}|_{\mathbf{w}=\mathbf{w}_t}$.
 
@@ -232,7 +232,7 @@ Sample m prompts from the pool and generate responses using old_policy, the outp
 
 ### Reward
 
-Score each response using the Reward Model, and include a term in the reward thatt penalizes the KL divergence between the learned RL policy $\pi_\phi^{\mathrm{RL}}$ with parameters $\phi$ and the original SFT model $\pi^{\mathrm{SFT}}$.
+Score each response using the Reward Model, and include a term in the reward that penalizes the KL divergence between the learned RL policy $\pi_\phi^{\mathrm{RL}}$ with parameters $\phi$ and the original SFT model $\pi^{\mathrm{SFT}}$.
 
 $
 \begin{aligned}
@@ -279,4 +279,4 @@ $\begin{aligned}\mathrm{actor\_loss}&=-\frac1M\frac1N\sum_{i=1}^M\sum_{j=1}^Na[i
 - $a$ represents the degree of reinforcing $p$.
 - When the probability of generating a certain token is already high ($p_\mathrm{old}$ is large), even if the advantage of this action is significant, there is no need to further increase the probability aggressively, which is similat to reducing lr.
 
-$\begin{aligned}\mathrm{critic\_loss}=\frac1{2MN}\sum_{i=1}^M\sum_{j=1}^N(\mathrm{values}[i,j]-\mathrm{returns}[i,j])^2\end{aligned}$
+$\begin{aligned}\mathrm{critic\_loss}=\frac1{2MN}\sum_{i=1}^M\sum_{j=1}^N(\mathrm{old\_values}[i,j]-\mathrm{returns}[i,j])^2\end{aligned}$
