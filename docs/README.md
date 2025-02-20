@@ -18,7 +18,11 @@
 
 ### Projects
 
-- 2022.04 - 2024.05 [AGILE: A Novel Framework of LLM Agents](https://arxiv.org/pdf/2405.14751)
+- 2022.07 - 2025.01 [PaSa: An LLM Agent for Comprehensive Academic Paper Search](https://github.com/bytedance/pasa)
+
+- 2022.05 - 2024.11 [StoryTeller: Improving Long Video Description through Global Audio-Visual Character Identification](https://github.com/hyc2026/StoryTeller)
+
+- 2022.04 - 2024.05 [AGILE: A Novel Framework of LLM Agents](https://github.com/bytarnish/AGILE)
 
 - 2022.05 - 2024.03 Content Quality - Fake Information Identify
 <!-- - 2022.05 - 2024.03 [内容质量-虚假识别](fakenews/README) -->
