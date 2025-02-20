@@ -179,32 +179,18 @@ The smaller the $\beta$, the lower the probability of hallucinations, and the mo
 We construct a synthetic language modeling task that allow us to control the difficulty and amount of stochasticity in the target responses, where the goal is to correctly respond to requests like $x=\,$ "Tell me about digit 24 of $\pi$". Early digits of $\pi$ are sampled more often than later ones, and the target responses are randomly-chosen true statements, such as "Sure, that is the number 6", "That's an even number", "It is spelled S I X", or "Sure, it's spelled with three letters'', which are sampled with different probabilities and exhibit variation in both style and semantic content.
 
 
-<center>
-    <img src="p3.png" alt="exp2">
-</center>
-<center>
-    <img src="p4.png" alt="exp2">
-</center>
-<center>
-    <img src="p5.png" alt="exp2">
-</center>
+![p3](p3.jpg)
+![p4](p4.jpg)
+![p5](p5.jpg)
 
 #### Experiment3: Safe Offline RL With Unobserved Confounders
-<center>
-    <img src="p6.png" alt="exp3">
-</center>
-<center>
-    <img src="p7.png" alt="exp3">
-</center>
+![p6](p6.jpg)
+![p7](p7.jpg)
 
 ### Paired Data Enables Distribution-Free Frequentist Confidence Intervals for $p(Y|X)$
 
-<center>
-    <img src="p9.png" alt="4.2">
-</center>
+![p9](p9.jpg)
 
 > Let $\hat{p}^{\theta}_{\scriptscriptstyle{Y|X}}$, $\hat{V}^{\theta}$, and $p_{\scriptscriptstyle{Y|X}}$ be arbitrary. With probability at least $1 - \alpha$ (over draws of the calibration set), Algorithm 1 returns a value $\gamma_\varepsilon^+$ such that, for a randomly sampled input $X \sim p(X)$, and any $\beta \in (0, 1), y \in \{0,1\}$,$\textstyle{}P\left[\Big| \hat{p}^{\theta}_{\scriptscriptstyle{Y|X}}(y|x) - p_{\scriptscriptstyle{Y|X}}(y|x) \Big| \ge \sqrt{\frac{\gamma_\varepsilon^+\max\{\hat{V}^{\theta}(y|x), \varepsilon\}}{\beta}} \right] \le \beta.$
 
-<center>
-    <img src="p8.png" alt="4.2">
-</center>
+![p8](p8.jpg)

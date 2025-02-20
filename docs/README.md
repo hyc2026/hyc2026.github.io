@@ -2,9 +2,13 @@
 
 ![title](title.png)
 
-### Publications
+### 
 
-- Feng P\*, **He Y\***, Huang G\*, et al. AGILE: A Novel Framework of LLM Agents[J]. arXiv preprint arXiv:2405.14751, 2024. [link](https://arxiv.org/pdf/2405.14751)
+- **He Y**, Huang G, Feng P, et al. PaSa: An LLM Agent for Comprehensive Academic Paper Search[J]. arXiv preprint arXiv:2501.10120, 2025. [link](https://arxiv.org/pdf/2501.10120)
+
+- **He Y**, Lin Y, Wu J, et al. StoryTeller: Improving Long Video Description through Global Audio-Visual Character Identification[J]. arXiv preprint arXiv:2411.07076, 2024. [link](https://arxiv.org/pdf/2411.07076)
+
+- Feng P\*, **He Y\***, Huang G\*, et al. AGILE: A Novel Framework of LLM Agents[C]. The Thirty-eighth Annual Conference on Neural Information Processing Systems. 2024. [link](https://openreview.net/pdf?id=Ul3lDYo3XQ)
 
 - Gao Y, **He Y**, Li X, et al. An Empirical Study on Low GPU Utilization of Deep Learning Jobs[C]. Proceedings of the IEEE/ACM 46th International Conference on Software Engineering. 2024: 1-13. [link](https://dl.acm.org/doi/abs/10.1145/3597503.3639232)
 
