@@ -2,7 +2,15 @@
 
 ![title](title.png)
 
-### 
+### Career & Education History
+
+**Researcher**; AILab, Bytedance Research; *2024 - Present*.
+
+**MS Student**; School of Computer Science and Engineer, Beihang University; *2021 - 2024*.
+
+**Undergrad Student**; School of Computer Science and Engineer, Beihang University; *2017 - 2021*.
+
+### Publications
 
 - **He Y**, Huang G, Feng P, et al. PaSa: An LLM Agent for Comprehensive Academic Paper Search[J]. arXiv preprint arXiv:2501.10120, 2025. [link](https://arxiv.org/pdf/2501.10120)
 
