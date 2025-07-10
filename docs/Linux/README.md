@@ -145,6 +145,21 @@ r->4 w->2 x->1
 
 ## 其他功能
 
+### 安装字体
+
+```bash
+sudo apt install ttf-mscorefonts-installer # 安装
+sudo fc-cache # 生效
+
+fc-match Arial # 查看Arial
+fc-match Times # 查看Times New Roman
+
+import matplotlib    
+print(matplotlib.get_cachedir())
+
+# rm -rf [cachedir] 清除缓存激活字体
+```
+
 ### 监控gpu使用
 
 `nvidia-smi`
