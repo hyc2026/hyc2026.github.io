@@ -12,6 +12,8 @@
 
 ### Publications
 
+- Long L, **He Y**, Ye W, et al. Seeing, Listening, Remembering, and Reasoning: A Multimodal Agent with Long-Term Memory[J]. arXiv preprint arXiv:2508.09736, 2025. [link](https://arxiv.org/pdf/2508.09736)
+
 - **He Y**, Huang G, Feng P, et al. PaSa: An LLM Agent for Comprehensive Academic Paper Search[J]. arXiv preprint arXiv:2501.10120, 2025. [link](https://arxiv.org/pdf/2501.10120)
 
 - **He Y**, Lin Y, Wu J, et al. StoryTeller: Improving Long Video Description through Global Audio-Visual Character Identification[J]. arXiv preprint arXiv:2411.07076, 2024. [link](https://arxiv.org/pdf/2411.07076)
@@ -26,13 +28,15 @@
 
 ### Projects
 
-- 2022.07 - 2025.01 [PaSa: An LLM Agent for Comprehensive Academic Paper Search](https://github.com/bytedance/pasa)
+- 2025.01 - 2025.08 [Seeing, Listening, Remembering, and Reasoning: A Multimodal Agent with Long-Term Memory](https://m3-agent.github.io/)
 
-- 2022.05 - 2024.11 [StoryTeller: Improving Long Video Description through Global Audio-Visual Character Identification](https://github.com/hyc2026/StoryTeller)
+- 2024.07 - 2025.01 [PaSa: An LLM Agent for Comprehensive Academic Paper Search](https://github.com/bytedance/pasa)
 
-- 2022.04 - 2024.05 [AGILE: A Novel Framework of LLM Agents](https://github.com/bytarnish/AGILE)
+- 2024.05 - 2024.11 [StoryTeller: Improving Long Video Description through Global Audio-Visual Character Identification](https://github.com/hyc2026/StoryTeller)
 
-- 2022.05 - 2024.03 Content Quality - Fake Information Identify
+- 2024.02 - 2024.05 [AGILE: A Novel Framework of LLM Agents](https://github.com/bytarnish/AGILE)
+
+- 2022.05 - 2024.02 Content Quality - Fake Information Identify
 <!-- - 2022.05 - 2024.03 [内容质量-虚假识别](fakenews/README) -->
 
 - 2022.10 - 2024.01 [Code Change to Commit Message](come/README)
