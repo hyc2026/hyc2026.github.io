@@ -5,12 +5,7 @@ GRPO eliminates the value function and estimates the advantage in a group-relati
 
 $$
 \begin{aligned}
-\mathcal{J}_\text{GRPO}(\theta)& = \mathbb{E}_{ x \sim \mathcal{D},\, \{y_i\}_{i=1}^G \sim \pi_{\theta_\text{old}}( \cdot | x) } \\&
-\Bigg[ \frac{1}{G}\sum_{i=1}^{G} \frac{1}{|y_i|}\sum_{t=1}^{|y_i|} \Bigg( 
-\min \Big( r_{i,t}(\theta) \hat{A}_{i,t},  
-\ \text{clip} \Big( r_{i,t}(\theta), 1 - \varepsilon, 1 + \varepsilon \Big) \hat{A}_{i,t} \Big)
-- \beta D_{\text{KL}}(\pi_{\theta} || \pi_{\text{ref}}) 
-\Bigg) \Bigg]
+\mathcal{J}_\text{GRPO}(\theta)& = \mathbb{E}_{ x \sim \mathcal{D},\, \{y_i\}_{i=1}^G \sim \pi_{\theta_\text{old}}( \cdot | x) } \\& \Bigg[ \frac{1}{G}\sum_{i=1}^{G} \frac{1}{|y_i|}\sum_{t=1}^{|y_i|} \Bigg( \min \Big( r_{i,t}(\theta) \hat{A}_{i,t},  \ \text{clip} \Big( r_{i,t}(\theta), 1 - \varepsilon, 1 + \varepsilon \Big) \hat{A}_{i,t} \Big)- \beta D_{\text{KL}}(\pi_{\theta} || \pi_{\text{ref}}) \Bigg) \Bigg]
 \end{aligned}
 $$
 
@@ -26,10 +21,7 @@ $$
 DAPO samples a group of outputs $\{y_i\}_{i=1}^G$ for each question $q$ paired with the answer $a$, and optimizes the policy via the following objective:
 $$
 \begin{aligned}
-\mathcal{J}_{\text{DAPO}}(\theta) =\quad& \mathbb{E}_{ x \sim \mathcal{D},\, \{y_i\}_{i=1}^G \sim \pi_{\theta_\text{old}}( \cdot | x) }\\&
-\Bigg[\frac{1}{\sum_{i=1}^{G}|y_i|}\sum_{i=1}^{G}\sum_{t=1}^{|y_i|} 
-\min \Big( r_{i,t}(\theta) \hat{A}_{i,t},  
-\ \text{clip} \Big( r_{i,t}(\theta), 1 - {\varepsilon_{\text{low}}}, 1 + {\varepsilon_{\text{high}}} \Big) \hat{A}_{i,t} \Big) \Bigg]\quad\text{s.t.}\ \Big|\{R_i\}\Big| > 1,
+\mathcal{J}_{\text{DAPO}}(\theta) =\quad& \mathbb{E}_{ x \sim \mathcal{D},\, \{y_i\}_{i=1}^G \sim \pi_{\theta_\text{old}}( \cdot | x) }\\&\Bigg[\frac{1}{\sum_{i=1}^{G}|y_i|}\sum_{i=1}^{G}\sum_{t=1}^{|y_i|} \min \Big( r_{i,t}(\theta) \hat{A}_{i,t},  \ \text{clip} \Big( r_{i,t}(\theta), 1 - {\varepsilon_{\text{low}}}, 1 + {\varepsilon_{\text{high}}} \Big) \hat{A}_{i,t} \Big) \Bigg]\quad\text{s.t.}\ \Big|\{R_i\}\Big| > 1,
 \end{aligned}
 $$
 where
@@ -73,11 +65,7 @@ $$
 and define the importance ratio $s_{i}(\theta)$ based on sequence likelihood:
 
 $$
-\begin{aligned}
-s_{i}(\theta) = \left( \frac{ \pi_{\theta} (y_i \mid x) }{ \pi_{\theta_\text{old}} (y_i \mid x)} \right)^{\frac{1}{|y_i|}}
-=
-\exp \left( \frac{1}{|y_i|} \sum_{t=1}^{|y_i|} \log \frac{ \pi_{\theta} (y_{i,t} \mid x, y_{i,<t}) }{ \pi_{\theta_\text{old}} (y_{i,t} \mid x,y_{i,<t})} \right).
-\end{aligned}
+s_{i}(\theta) = \left( \frac{ \pi_{\theta} (y_i \mid x) }{ \pi_{\theta_\text{old}} (y_i \mid x)} \right)^{\frac{1}{|y_i|}}=\exp \left( \frac{1}{|y_i|} \sum_{t=1}^{|y_i|} \log \frac{ \pi_{\theta} (y_{i,t} \mid x, y_{i,<t}) }{ \pi_{\theta_\text{old}} (y_{i,t} \mid x,y_{i,<t})} \right).
 $$
 
 ## Words of Experience
