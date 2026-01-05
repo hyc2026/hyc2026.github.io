@@ -38,7 +38,7 @@
 
 - 2024.02 - 2024.05 [AGILE: A Novel Framework of LLM Agents](https://github.com/bytarnish/AGILE)
 
-- 2022.05 - 2024.02 Content Quality - Fake Information Identify
+- 2022.05 - 2024.02 [Content Quality - Fake Information Identify](fakenews/README)
 <!-- - 2022.05 - 2024.03 [内容质量-虚假识别](fakenews/README) -->
 
 - 2022.10 - 2024.01 [Code Change to Commit Message](come/README)
