@@ -4,7 +4,9 @@
 
 ### Career & Education History
 
-**Researcher**; AILab, Bytedance Research; *2024 - Present*.
+**Researcher**; Responsible AI, Bytedance Seed; *2025 - Present*.
+
+**Researcher**; AILab, Bytedance Research; *2024 - 2025*.
 
 **MS Student**; School of Computer Science and Engineer, Beihang University; *2021 - 2024*.
 
@@ -12,7 +14,7 @@
 
 ### Publications
 
-- Long L, **He Y**, Ye W, et al. Seeing, Listening, Remembering, and Reasoning: A Multimodal Agent with Long-Term Memory[J]. arXiv preprint arXiv:2508.09736, 2025. [link](https://arxiv.org/pdf/2508.09736)
+- Long L, **He Y**, Ye W, et al. Seeing, Listening, Remembering, and Reasoning: A Multimodal Agent with Long-Term Memory[J]. arXiv preprint arXiv:2508.09736, 2025. [link](https://arxiv.org/pdf/2508.09736)
 
 - **He Y**, Huang G, Feng P, et al. PaSa: An LLM Agent for Comprehensive Academic Paper Search[J]. arXiv preprint arXiv:2501.10120, 2025. [link](https://arxiv.org/pdf/2501.10120)
 
@@ -49,9 +51,11 @@
 
 ### Hot Blogs
 
-- [Transformer](Transformer/Transformer.md)
+- [LLM Reinforcement Learning](rl/LLM-RL-Training.md)
 
 - [Deep Reinforcement Learning](rl/README)
+
+- [Transformer](Transformer/Transformer.md)
 
 - [Huggingface Transformers](Transformers/README)
 
