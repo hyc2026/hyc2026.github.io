@@ -2,6 +2,7 @@
 
 ## GRPO
 GRPO eliminates the value function and estimates the advantage in a group-relative manner. For a specific input data $x$, the behavior policy $\pi_{\theta_\text{old}}$ samples a group of $G$ individual responses $\{ y_i\}_{i=1}^G$. Then, the advantage of the $i$-th response is calculated by normalizing the group-level rewards $\{ R_i \}_{i=1}^G$:
+
 $$
 \begin{aligned}
 \mathcal{J}_\text{GRPO}(\theta)& = \mathbb{E}_{ x \sim \mathcal{D},\, \{y_i\}_{i=1}^G \sim \pi_{\theta_\text{old}}( \cdot | x) } \\&
@@ -12,7 +13,9 @@ $$
 \Bigg) \Bigg]
 \end{aligned}
 $$
+
 where
+
 $$
 \begin{aligned}
     r_{i,t}(\theta)=\frac{\pi_{\theta}(y_{i,t} \mid x, y_{i,<t})}{\pi_{\theta_{\text{old}}}(y_{i,t} \mid x,y_{i,<t})},\quad\hat{A}_{i,t} = \frac{R_i - \text{mean}(\{R_i\}_{i=1}^G)}{\text{std}(\{R_i\}_{i=1}^G)}.
@@ -47,6 +50,7 @@ While the token-level importance weight $\frac{ \pi_{\theta} (y_{i,t} | x, y_{i,
 
 
 Based on this straightforward observation, GSPO employs the following sequence-level optimization objective:
+
 $$
 \begin{aligned}
 \mathcal{J}_\text{GSPO} (\theta) =
@@ -54,17 +58,20 @@ $$
 \left[ 
 \frac{1}{G} \sum_{i=1}^{G}
 \min \left( s_{i}(\theta)  \hat{A}_{i},  \, \mathrm{clip} \left( s_{i}(\theta), 1 - {\varepsilon}, 1 + {\varepsilon} \right) \hat{A}_{i} \right) 
-\right],
+\right]
 \end{aligned}
 $$
 
 where we adopt the group-based advantage estimation:
+
 $$
 \begin{aligned}
 \hat{A}_i = \frac{R_i - \text{mean}(\{R_i\}_{i=1}^G)}{\text{std}(\{R_i\}_{i=1}^G)},
 \end{aligned}
 $$
+
 and define the importance ratio $s_{i}(\theta)$ based on sequence likelihood:
+
 $$
 \begin{aligned}
 s_{i}(\theta) = \left( \frac{ \pi_{\theta} (y_i \mid x) }{ \pi_{\theta_\text{old}} (y_i \mid x)} \right)^{\frac{1}{|y_i|}}
